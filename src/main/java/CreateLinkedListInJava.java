@@ -25,8 +25,31 @@ public class CreateLinkedListInJava {
         addValueIntoLinkedList(30);
         addValueIntoLinkedList(40);
         addValueIntoLinkedList(50);
+        System.out.println("values present in linked list ");
         displayValueInLinkedList();
+//        System.out.println("creating loop");
+        head.next.next.next.next.next = head;
+        // printing list to check loop
+        // Lets detect loop in linked list
+        detectLoopInLinkedList(); // Since loop statement commented no loop created
+     //   displayValueInLinkedList();
+
     }
+
+    private static void detectLoopInLinkedList() {
+
+        Node slowPointer = head;
+        Node fastPointer = head;
+        while (slowPointer != null && fastPointer != null && fastPointer.next != null) {
+            slowPointer = slowPointer.next;
+            fastPointer = fastPointer.next.next;
+            if (slowPointer == fastPointer) {
+                System.out.println("Detected loop");
+                break;
+            }
+        }
+    }
+
 
     private static void displayValueInLinkedList() {
         Node temp = head;
