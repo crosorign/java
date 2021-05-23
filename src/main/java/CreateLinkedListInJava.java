@@ -60,6 +60,20 @@ public class CreateLinkedListInJava {
     }
 
 
+     private static void reverseAndPrintLinkedList() {
+
+        Node next = null;
+        Node previous = null;
+        Node current = head;
+        while (current != null) {
+            next = current.next; // pointing next node to current node's next value
+            current.next = previous; // pointing current node's next tp previous so it will be rotated
+            previous = current; // setting current node to previous node
+            current = next; // moving current pointer to next pointer to repeat the reversing process
+        }
+        head = previous; // all reversed values are stored in this previous
+        displayValueInLinkedList(); // printing new reversed values
+    }
     
     private static void detectLoopInLinkedList() {
 
