@@ -28,14 +28,39 @@ public class CreateLinkedListInJava {
         System.out.println("values present in linked list ");
         displayValueInLinkedList();
 //        System.out.println("creating loop");
-        head.next.next.next.next.next = head;
-        // printing list to check loop
-        // Lets detect loop in linked list
-        detectLoopInLinkedList(); // Since loop statement commented no loop created
+//         head.next.next.next.next.next = head;
+//       printing list to check loop
+//          Lets detect loop in linked list
+//         detectLoopInLinkedList(); // Since loop statement commented no loop created
      //   displayValueInLinkedList();
+         int rotateNumber = 2; // rotating linked list twice
+        rotateLinkedList(rotateNumber);
+        displayValueInLinkedList();
 
     }
 
+      private static void rotateLinkedList(int rotateNumber) {
+        Node temp = head;
+
+        while (rotateNumber>0)
+        {
+            temp = temp.next;
+            rotateNumber--;
+        }
+        Node rotatedHead = temp;
+        while (temp.next!=null)
+        {
+            temp = temp.next; // traversing till end of list
+        }
+        // Now perform rotate operation
+        temp.next = head;  // pointing last node to head
+
+        head = rotatedHead.next; // creating new head
+        rotatedHead.next = null; // null  inorder to avoid circular list
+    }
+
+
+    
     private static void detectLoopInLinkedList() {
 
         Node slowPointer = head;
