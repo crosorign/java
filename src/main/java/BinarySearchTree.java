@@ -20,6 +20,13 @@ public class BinarySearchTree {
         bst.insertValue(11);
         bst.insertValue(15);
 
+        bst.searchElement(bst.root, 12);
+        bst.searchElement(bst.root, 10);
+        bst.searchElement(bst.root, 15);
+        bst.searchElement(bst.root, 4);
+
+
+        bst.searchElement(bst.root, 12);
 
         // Traversals in BST Level order , inorder , preorder , post order
         // level Order also know as  DFS (Depth first search)
@@ -45,6 +52,24 @@ public class BinarySearchTree {
         bst.printPostOrderTraversal(bst.root);
     }
 
+    private void searchElement(Node root, int value) {
+        if (root == null) {
+            return;
+        }
+        if (root.data == value) {
+            System.out.println("Found element " + value);
+            return;
+        }
+        if (root.data > value) {
+            System.out.println("since value less than root searching right side");
+            searchElement(root.right, value);
+        } else {
+            System.out.println("since value less than root searching left side");
+            searchElement(root.left, value);
+        }
+    }
+
+
     private void printPostOrderTraversal(Node root) {
         //  right left root
         if (root != null) {
@@ -59,6 +84,7 @@ public class BinarySearchTree {
         if (root != null) {
             System.out.print(root.data + " ");
             printInorderTraversal(root.right);
+            printInorderTraversal(root.left);
             printInorderTraversal(root.left);
         }
     }
